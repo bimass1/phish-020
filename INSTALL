@@ -1,0 +1,21 @@
+#!bin/bash
+
+clear
+echo -e "\e[0;42mmendownload sumber moduule...\e[0;42m"
+sleep 5
+
+if [[ "$(whoami)" !- "root" ]];
+then
+   echo "Not root"
+   exit
+elif [[ "$(whoami)" == "root" ]];
+then
+   apt install git
+   apt install python3
+   apt install ssh
+   apt install neofetch
+fi
+
+
+
+
