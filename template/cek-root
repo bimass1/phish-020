@@ -1,0 +1,13 @@
+#!bin/bash
+
+clear
+sleep 2
+
+if [[ "$(whoami)" != "root" ]];
+then
+   echo "Not root"
+   exit
+elif [[ "$(whoami)" == "root" ]];
+then
+   echo "root"
+fi
