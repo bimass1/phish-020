@@ -1,0 +1,71 @@
+#!/bin/bash
+
+#https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+
+
+merah="\e[0;31m"
+putih="\e[1;37m"
+biru="\033[33m"
+hijau="\e[0;42m"
+
+clear
+sleep 2
+echo "siapa nama mu?"
+read nama
+echo "umur berapa lo?"
+read umur
+if [[ $umur<=18 ]];
+then
+   echo "umurmu tak cukup"
+   exit
+else
+    clear
+    sleep 2
+    echo -e "${merah}██████╗ ██╗  ██╗██╗███████╗██╗  ██╗       ██████╗ ██████╗  ██████╗${merah}"
+    sleep 1
+    echo -e "${merah}██╔══██╗██║  ██║██║██╔════╝██║  ██║      ██╔═████╗╚════██╗██╔═████╗${merah}"
+    sleep 1
+    echo -e "${merah}██████╔╝███████║██║███████╗███████║█████╗██║██╔██║ █████╔╝██║██╔██║${merah}"
+    sleep 1
+    echo -e "${putih}██╔═══╝ ██╔══██║██║╚════██║██╔══██║╚════╝████╔╝██║██╔═══╝ ████╔╝██║${putih}"
+    sleep 1
+    echo -e "${putih}██║     ██║  ██║██║███████║██║  ██║      ╚██████╔╝███████╗╚██████╔╝${putih}"
+    sleep 1
+    echo -e "${putih}╚═╝     ╚═╝  ╚═╝╚═╝╚══════╝╚═╝  ╚═╝       ╚═════╝ ╚══════╝ ╚═════╝${putih}"
+    
+    echo -e "${biru}======================${biru}"
+    sleep 1
+    echo -e "${merah}[1] localhost        ${merah}=" 
+    sleep 1
+    echo -e "${putih}[2] ngrok            ${putih}="
+    sleep 1
+    echo -e "${biru}======================${biru}"
+    read -p '=>' pi
+    if [[ "$pi" == "1" ]];
+    then
+        #echo "Masukan port[default: 1000]: "
+      	read -p 'Masukan port[default: 1000]: ' m
+        echo "Menunggu target: "
+        echo -e "Link: ${hijau}http://localhost:$m${hijau}" 
+        php -S localhost:$m  #2<1 /dev/null
+    elif [[ "$pi" == "2" ]];
+    then
+        wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+        sleep 2
+        echo "download ngrok..."
+        sleep 2
+        clear
+        clear
+        tar zxvf ngrok-v3-stable-linux-amd64.tgz
+        sleep 3
+        rm ngrok-v3-stable-linux-amd64.tgz
+        chmod 777 ngrok
+        ./ngrok http 8080
+        rm ngrok
+   elif [[ "$(^c)" ]];
+   then
+       clear
+       echo "ok"
+       exit
+    fi
+fi
